@@ -1,37 +1,58 @@
-import React, { useState } from 'react';
-import allQuestions from './questions';
+import React, { useState } from "react";
+import allQuestions from "./questions";
 
-export default function BacQuizApp() {
-  const [numQuestions, setNumQuestions] = useState(5);
+// Funcție pentru amestecarea array-ului (Fisher-Yates)
+function shuffleArray(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+export default function App() {
   const [startQuiz, setStartQuiz] = useState(false);
+  const [numQuestions, setNumQuestions] = useState(10);
+  const [questions, setQuestions] = useState([]);
   const [step, setStep] = useState(0);
   const [selected, setSelected] = useState(null);
   const [score, setScore] = useState(0);
 
-  const questions = allQuestions.slice(0, numQuestions);
+  // Pornește testul cu întrebări randomizate
+  const start = () => {
+    const mixed = shuffleArray(allQuestions).slice(0, numQuestions);
+    setQuestions(mixed);
+    setStep(0);
+    setScore(0);
+    setSelected(null);
+    setStartQuiz(true);
+  };
 
-  const handleAnswer = (index) => {
-    setSelected(index);
-    if (index === questions[step].correct) {
-      setScore(score + 1);
+  // Răspuns la întrebare
+  const handleAnswer = (idx) => {
+    setSelected(idx);
+    if (idx === questions[step].correct) {
+      setScore((s) => s + 1);
     }
   };
 
+  // Următoarea întrebare
   const next = () => {
+    setStep((s) => s + 1);
     setSelected(null);
-    setStep(step + 1);
   };
 
+  // Reset test
   const reset = () => {
     setStartQuiz(false);
+    setQuestions([]);
     setStep(0);
     setScore(0);
     setSelected(null);
   };
 
-  // Bara de progres
-  const progress = Math.round(((step) / questions.length) * 100);
-
+  // Ecranul de start
   if (!startQuiz) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950 flex items-center justify-center">
@@ -52,16 +73,16 @@ export default function BacQuizApp() {
           />
           <button
             className="w-full py-2 px-4 rounded bg-blue-600 hover:bg-blue-700 transition font-semibold text-white shadow mt-2"
-            onClick={() => setStartQuiz(true)}
+            onClick={start}
           >
             Începe testul
           </button>
-          <div className="mt-6 text-gray-400 text-sm text-center opacity-60">modul dark activ</div>
         </div>
       </div>
     );
   }
 
+  // Finalul testului
   if (step >= questions.length) {
     let feedback = "Mai mult exercițiu și vei fi pregătit!";
     if (score === questions.length) feedback = "Excelent! Ai răspuns corect la toate!";
@@ -85,7 +106,9 @@ export default function BacQuizApp() {
     );
   }
 
+  // Ecranul de întrebări
   const q = questions[step];
+  const progress = ((step + 1) / questions.length) * 100;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950 flex items-center justify-center">
