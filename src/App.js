@@ -1,38 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const allQuestions = [
-  {
-    question: 'Care este tema centrală a romanului „Ion” de Liviu Rebreanu?',
-    options: [
-      'Conflictul dintre generații în familia Moromete',
-      'Lupta pentru pământ a țăranului sărac',
-      'Confruntarea dintre modern și tradițional'
-    ],
-    correct: 1,
-    explanation: 'Tema centrală a romanului „Ion” este lupta pentru pământ, văzută ca mijloc de afirmare socială și personală.'
-  },
-  {
-    question: 'Ce simbolizează cuvântul „plumb” în poezia lui Bacovia?',
-    options: [
-      'Dragostea și speranța',
-      'Forța divină interioară',
-      'Moartea, izolarea și sufocarea sufletească'
-    ],
-    correct: 2,
-    explanation: 'Plumbul simbolizează o atmosferă apăsătoare, izolarea, moartea sufletească, tipică simbolismului bacovian.'
-  },
-  {
-    question: 'Ce specie literară este „Povestea lui Harap-Alb” de Ion Creangă?',
-    options: [
-      'Nuvelă psihologică',
-      'Basm cult',
-      'Comedie de moravuri'
-    ],
-    correct: 1,
-    explanation: '„Povestea lui Harap-Alb” este un basm cult deoarece are structură specifică basmelor, dar autorul este cunoscut, iar stilul este elevat.'
-  }
-];
+import allQuestions from './questions'; 
 
 export default function BacQuizApp() {
   const [numQuestions, setNumQuestions] = useState(1);
