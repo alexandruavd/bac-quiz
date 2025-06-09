@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bac-quiz/static/css/main.539c7af4.css",
-    "main.js": "/bac-quiz/static/js/main.5a4118f2.js",
+    "main.js": "/bac-quiz/static/js/main.717c174a.js",
     "static/js/453.d639e7c3.chunk.js": "/bac-quiz/static/js/453.d639e7c3.chunk.js",
     "index.html": "/bac-quiz/index.html",
     "main.539c7af4.css.map": "/bac-quiz/static/css/main.539c7af4.css.map",
-    "main.5a4118f2.js.map": "/bac-quiz/static/js/main.5a4118f2.js.map",
+    "main.717c174a.js.map": "/bac-quiz/static/js/main.717c174a.js.map",
     "453.d639e7c3.chunk.js.map": "/bac-quiz/static/js/453.d639e7c3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.539c7af4.css",
-    "static/js/main.5a4118f2.js"
+    "static/js/main.717c174a.js"
   ]
 }
